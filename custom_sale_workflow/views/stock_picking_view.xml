@@ -1,0 +1,23 @@
+<odoo>
+    <record id="view_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_id']" position="after">
+                <field name="tag_ids" widget="many2many_tags" invisible="not tag_ids" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_tree_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.tree.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="tag_ids" widget="many2many_tags" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

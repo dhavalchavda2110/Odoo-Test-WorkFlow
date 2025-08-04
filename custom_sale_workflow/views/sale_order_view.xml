@@ -1,0 +1,12 @@
+<odoo>
+  <record id="view_order_filter_inherit_filter" model="ir.ui.view">
+    <field name="name">sale.order.search.view</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+    <field name="arch" type="xml">
+      <filter name="my_quotation" position="replace">
+        <filter name="my_quotation" string="My Quotations" domain="[('state', 'in', ['sale', 'done'])]" />
+      </filter>
+    </field>
+  </record>
+</odoo>

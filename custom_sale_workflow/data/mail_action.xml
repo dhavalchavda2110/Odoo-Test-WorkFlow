@@ -1,0 +1,29 @@
+<odoo>
+    <record id="mail_template_sale_delivery_notify" model="mail.template">
+        <field name="name">Delivery Completed Notification</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="subject">Delivery Order Completed for ${object.name}</field>
+        <field name="email_to">${object.user_id.email}</field>
+           <field name="body_html" type="html">
+                <p>
+                Dear <t t-out="object.user_id.name or 'Sales Person'">Sales Person</t>,<br/><br/>
+                <p>The Delivery of Sale order <t t-out="object.name"/> </p>
+
+                Thank you
+                <br/><br/>
+                Best regards,<br/><br/>
+            </p>
+            </field>
+    </record>
+    <record id="ir_cron_create_mail_sale_order" model="ir.cron">
+        <field name="name">Sale: Create Mail for Sales Person to Show Order is Delivered</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="code">model._send_mail_sales_person()</field>
+        <field name="state">code</field>
+    </record>
+</odoo>
+    
