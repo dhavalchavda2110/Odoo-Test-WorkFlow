@@ -46,12 +46,12 @@ class ProcurementRule(models.Model):
 class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
-    def write(self, vals):
-        for record in self:
-            if (
-                'product_qty' in vals
-                and record.state not in ['draft', 'cancel']
-                and record.origin  # only if created from a sale order
-            ):
-                raise exceptions.UserError("You cannot change the quantity after confirmation for MOs created from a sale order.")
-        return super(MrpProduction, self).write(vals)
+    # def write(self, vals):
+    #     for record in self:
+    #         if (
+    #             'product_qty' in vals
+    #             and record.state not in ['draft', 'cancel']
+    #             and record.origin  # only if created from a sale order
+    #         ):
+    #             raise exceptions.UserError("You cannot change the quantity after confirmation for MOs created from a sale order.")
+    #     return super(MrpProduction, self).write(vals)
